@@ -86,7 +86,6 @@ mod tests {
         assert!(
             warp::test::request()
                 .method("POST")
-                .path("/")
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .body("_method=PUT&first_name=john")
                 .matches(&filter)
@@ -101,7 +100,6 @@ mod tests {
         assert!(
             warp::test::request()
                 .method("POST")
-                .path("/")
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .body("_method=DELETE&first_name=john")
                 .matches(&filter)
@@ -116,7 +114,6 @@ mod tests {
         assert!(
             warp::test::request()
                 .method("POST")
-                .path("/")
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .body("_method=PUT")
                 .matches(&filter)
@@ -131,7 +128,6 @@ mod tests {
         assert!(
             warp::test::request()
                 .method("POST")
-                .path("/")
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .body("_method=HEAD")
                 .matches(&filter)
@@ -146,7 +142,6 @@ mod tests {
         assert!(
             warp::test::request()
                 .method("POST")
-                .path("/")
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .body("_method=DELETE")
                 .matches(&filter)
@@ -161,7 +156,6 @@ mod tests {
         assert!(
             !warp::test::request()
                 .method("POST")
-                .path("/")
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .body("first_name=john&_method=PUT")
                 .matches(&filter)
@@ -176,7 +170,6 @@ mod tests {
         assert!(
             !warp::test::request()
                 .method("POST")
-                .path("/")
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .body("_method=DELETE&first_name=john")
                 .matches(&filter)
@@ -191,7 +184,6 @@ mod tests {
         assert!(
             !warp::test::request()
                 .method("POST")
-                .path("/")
                 .body("_method=PUT&first_name=john")
                 .matches(&filter)
                 .await
@@ -202,12 +194,6 @@ mod tests {
     async fn it_rejects_with_post_method_and_no_content() {
         let filter = form_method(Method::PUT);
 
-        assert!(
-            !warp::test::request()
-                .method("POST")
-                .path("/")
-                .matches(&filter)
-                .await
-        )
+        assert!(!warp::test::request().method("POST").matches(&filter).await)
     }
 }
