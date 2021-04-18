@@ -1,0 +1,20 @@
+[package]
+name = "warp_form_method"
+version = "0.1.0"
+description = "A warp filter for accepting form submissions using any HTTP method."
+repository = "https://github.com/maxdeviant/warp-form-method"
+documentation = "https://docs.rs/warp_form_method"
+categories = ["web-programming::http-server"]
+keywords = ["warp", "filter", "form", "method"]
+authors = ["Marshall Bowers <elliott.codes@gmail.com>"]
+license = "MIT"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+futures = "0.3"
+warp = "0.3"
+
+[dev-dependencies]
+tokio = { version = "1", features = ["full"] }
